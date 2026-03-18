@@ -85,4 +85,4 @@ If you want to verify the artifact was published, check for:
 com/achozen/kmp-onvif/0.1.3
 ```
 
-under your local Maven repository.
+Under your local Maven repository.
