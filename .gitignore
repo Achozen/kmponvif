@@ -1,0 +1,15 @@
+.gradle/
+build/
+.kon*/
+node_modules/
+.yarn/
+.kotlin/
+**/build/
+
+# IDE / local machine files
+.idea/
+local.properties
+kotlin-js-store/
+
+# local reference checkout
+reference-upstream/
