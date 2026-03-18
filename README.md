@@ -22,14 +22,12 @@ This project was built using [sproctor/ONVIF-Camera-Kotlin](https://github.com/s
 ## Module
 
 ```kotlin
-implementation("io.github.achoz:kmp-onvif:0.1.2")
+implementation("com.achozen:kmp-onvif:0.1.3")
 ```
 
 ## Example
 
 ```kotlin
-import com.achozen.kmponvif.OnvifCredentials
-import com.achozen.kmponvif.OnvifDevice
 
 suspend fun loadCamera() {
     val result = OnvifDevice.connect(
@@ -77,14 +75,14 @@ repositories {
 }
 
 dependencies {
-    implementation("io.github.achoz:kmp-onvif:0.1.2")
+    implementation("com.achozen:kmp-onvif:0.1.3")
 }
 ```
 
 If you want to verify the artifact was published, check for:
 
 ```text
-io/github/achoz/kmp-onvif/0.1.2
+com/achozen/kmp-onvif/0.1.3
 ```
 
 under your local Maven repository.

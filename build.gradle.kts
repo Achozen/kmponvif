@@ -4,5 +4,5 @@ plugins {
     alias(libs.plugins.androidKotlinMultiplatformLibrary) apply false
 }
 
-group = "io.github.achoz"
-version = "0.1.2"
+group = "com.achozen"
+version = "0.1.3"

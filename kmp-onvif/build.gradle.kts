@@ -5,8 +5,8 @@ plugins {
     id("maven-publish")
 }
 
-group = "io.github.achoz"
-version = "0.1.2"
+group = "com.achozen"
+version = "0.1.3"
 
 kotlin {
     androidLibrary {
