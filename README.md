@@ -22,7 +22,7 @@ This project was built using [sproctor/ONVIF-Camera-Kotlin](https://github.com/s
 ## Module
 
 ```kotlin
-implementation("com.achozen:kmp-onvif:0.1.3")
+implementation("com.achozen:kmp-onvif:0.1.5")
 ```
 
 ## Example
@@ -75,14 +75,14 @@ repositories {
 }
 
 dependencies {
-    implementation("com.achozen:kmp-onvif:0.1.3")
+    implementation("com.achozen:kmp-onvif:0.1.5")
 }
 ```
 
 If you want to verify the artifact was published, check for:
 
 ```text
-com/achozen/kmp-onvif/0.1.3
+com/achozen/kmp-onvif/0.1.5
 ```
 
 Under your local Maven repository.

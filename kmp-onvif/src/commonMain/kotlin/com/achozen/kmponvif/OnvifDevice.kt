@@ -43,15 +43,43 @@ public class OnvifDevice private constructor(
         protocol: StreamProtocol = StreamProtocol.RTSP,
         addCredentials: Boolean = false,
     ): String {
-        val uri = parseStreamUri(
-            executeSoap(
-                httpClient = httpClient,
-                endpoint = endpointFor(OnvifServiceType.MEDIA),
-                body = OnvifCommands.getStreamUri(profile.token, protocol),
-                transportConfig = transportConfig,
-            ),
+        logger?.debug(
+            "getStreamUri: start token=${profile.token}, protocol=$protocol, addCredentials=$addCredentials",
         )
-        return normalizeReturnedUri(uri, addCredentials)
+
+        val endpoint = endpointFor(OnvifServiceType.MEDIA)
+        logger?.debug("getStreamUri: resolved media endpoint=$endpoint")
+
+        val requestBody = OnvifCommands.getStreamUri(profile.token, protocol)
+        logger?.debug("getStreamUri: built SOAP request body (${requestBody.length} chars)")
+
+        var responseBody: String? = null
+        return try {
+            logger?.debug("getStreamUri: sending SOAP request")
+            responseBody = executeSoap(
+                httpClient = httpClient,
+                endpoint = endpoint,
+                body = requestBody,
+                transportConfig = transportConfig,
+            )
+            logger?.debug("getStreamUri: received SOAP response (${responseBody.length} chars)")
+            logger?.debug("getStreamUri: raw SOAP response=$responseBody")
+
+            logger?.debug("getStreamUri: parsing stream URI from SOAP response")
+            val uri = parseStreamUri(responseBody)
+            logger?.debug("getStreamUri: parsed raw stream URI=$uri")
+
+            logger?.debug("getStreamUri: normalizing returned URI")
+            val normalizedUri = normalizeReturnedUri(uri, addCredentials)
+            logger?.debug("getStreamUri: finished normalized stream URI=$normalizedUri")
+            normalizedUri
+        } catch (error: Throwable) {
+            if (responseBody != null) {
+                logger?.debug("getStreamUri: response body available during failure=$responseBody")
+            }
+            logger?.debug("getStreamUri: failed with ${error::class.simpleName}: ${error.message}")
+            throw error
+        }
     }
 
     public suspend fun getSnapshotUri(

@@ -41,12 +41,7 @@ internal object OnvifCommands {
     fun getStreamUri(profileToken: String, protocol: StreamProtocol): String =
         soapHeader +
             "<GetStreamUri xmlns=\"http://www.onvif.org/ver20/media/wsdl\">" +
-            "<StreamSetup>" +
-            "<Stream xmlns=\"http://www.onvif.org/ver10/schema\">RTP-Unicast</Stream>" +
-            "<Transport xmlns=\"http://www.onvif.org/ver10/schema\">" +
             "<Protocol>${protocol.name}</Protocol>" +
-            "</Transport>" +
-            "</StreamSetup>" +
             "<ProfileToken>$profileToken</ProfileToken>" +
             "</GetStreamUri>" +
             envelopeEnd
